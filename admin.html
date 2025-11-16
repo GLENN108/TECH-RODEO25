@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Tech Rodeo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Floating Tech Elements -->
+    <div class="floating-elements">
+        <div class="tech-shape shape-1"></div>
+        <div class="tech-shape shape-2"></div>
+        <div class="tech-shape shape-3"></div>
+        <div class="tech-shape shape-4"></div>
+        <div class="tech-shape shape-5"></div>
+    </div>
+
+    <!-- Admin Header -->
+    <header class="register-header">
+        <div class="register-header-container">
+            <a href="index.html" class="back-btn">← Home</a>
+            <h1 class="register-header-title">Admin Panel</h1>
+            <div></div>
+        </div>
+    </header>
+
+    <!-- Admin Login Form (if not logged in) -->
+    <main class="register-main" id="adminLoginSection">
+        <div class="register-container">
+            <div class="register-content">
+                <h2 class="register-title">Admin Login</h2>
+                <p class="register-subtitle">Enter admin credentials to access the panel.</p>
+                
+                <form id="adminLoginForm" class="registration-form">
+                    <div class="form-group">
+                        <label for="adminUsername" class="form-label">
+                            Admin Username <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="adminUsername" 
+                            name="adminUsername" 
+                            class="form-input" 
+                            placeholder="Enter admin username"
+                            required
+                        >
+                        <span class="form-error" id="adminUsernameError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="adminPassword" class="form-label">
+                            Admin Password <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="password" 
+                            id="adminPassword" 
+                            name="adminPassword" 
+                            class="form-input" 
+                            placeholder="Enter admin password"
+                            required
+                        >
+                        <span class="form-error" id="adminPasswordError"></span>
+                    </div>
+
+                    <div class="form-submit-group">
+                        <button type="submit" class="register-submit-btn" id="adminLoginBtn">
+                            <span class="btn-text">Login as Admin</span>
+                        </button>
+                    </div>
+                </form>
+
+                <div class="form-error-message" id="adminLoginError" style="display: none;">
+                    <div class="error-icon">✗</div>
+                    <h3 class="error-title">Login Failed</h3>
+                    <p class="error-message" id="adminLoginErrorMessage"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Admin Main (if logged in) -->
+    <main class="register-main" id="adminDashboardSection" style="display: none;">
+        <div class="register-container" style="max-width: 1200px;">
+            <div class="register-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div>
+                        <h2 class="register-title" style="margin: 0;">Admin Dashboard</h2>
+                        <p class="register-subtitle" style="margin: 0.5rem 0 0;">View all registrations and manage the event.</p>
+                    </div>
+                    <button onclick="logoutUser(); window.location.reload();" class="back-btn">Logout</button>
+                </div>
+                
+                <!-- Statistics -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                    <div style="background: rgba(0, 212, 255, 0.1); border: 2px solid rgba(0, 212, 255, 0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <h3 style="font-family: 'Orbitron', sans-serif; color: var(--primary-blue); font-size: 2rem; margin: 0;" id="totalRegistrations">0</h3>
+                        <p style="font-family: 'Rajdhani', sans-serif; color: var(--text-gray); margin: 0.5rem 0 0;">Total Registrations</p>
+                    </div>
+                    <div style="background: rgba(139, 92, 246, 0.1); border: 2px solid rgba(139, 92, 246, 0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <h3 style="font-family: 'Orbitron', sans-serif; color: var(--primary-purple); font-size: 2rem; margin: 0;" id="totalColleges">0</h3>
+                        <p style="font-family: 'Rajdhani', sans-serif; color: var(--text-gray); margin: 0.5rem 0 0;">Colleges Registered</p>
+                    </div>
+                    <div style="background: rgba(255, 0, 255, 0.1); border: 2px solid rgba(255, 0, 255, 0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                        <h3 style="font-family: 'Orbitron', sans-serif; color: var(--neon-pink); font-size: 2rem; margin: 0;" id="totalEvents">0</h3>
+                        <p style="font-family: 'Rajdhani', sans-serif; color: var(--text-gray); margin: 0.5rem 0 0;">Events</p>
+                    </div>
+                </div>
+
+                <!-- Registrations Table -->
+                <div style="background: rgba(10, 14, 39, 0.6); border: 2px solid rgba(0, 212, 255, 0.3); border-radius: 12px; padding: 1.5rem; overflow-x: auto;">
+                    <h3 style="font-family: 'Orbitron', sans-serif; color: var(--primary-blue); margin-bottom: 1rem;">All Registrations</h3>
+                    <div id="registrationsTable">
+                        <p style="text-align: center; color: var(--text-gray); padding: 2rem;">Loading registrations...</p>
+                    </div>
+                </div>
+
+                <!-- Export Button -->
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="register-submit-btn" onclick="exportRegistrations()" style="max-width: 300px;">
+                        <span class="btn-text">Export to CSV</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
+

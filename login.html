@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Tech Rodeo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Floating Tech Elements -->
+    <div class="floating-elements">
+        <div class="tech-shape shape-1"></div>
+        <div class="tech-shape shape-2"></div>
+        <div class="tech-shape shape-3"></div>
+        <div class="tech-shape shape-4"></div>
+        <div class="tech-shape shape-5"></div>
+    </div>
+
+    <!-- Login Header -->
+    <header class="register-header">
+        <div class="register-header-container">
+            <a href="index.html" class="back-btn">← Home</a>
+            <h1 class="register-header-title">Login</h1>
+            <div></div>
+        </div>
+    </header>
+
+    <!-- Login Main -->
+    <main class="register-main">
+        <div class="register-container">
+            <div class="register-content">
+                <h2 class="register-title">Welcome Back</h2>
+                <p class="register-subtitle">Choose your login type to continue.</p>
+                
+                <!-- Login Type Selection -->
+                <div class="login-type-selection" id="loginTypeSelection">
+                    <button type="button" class="login-type-btn" id="adminLoginBtn" onclick="selectLoginType('admin')">
+                        <span class="login-type-icon">👤</span>
+                        <span class="login-type-text">Admin Login</span>
+                    </button>
+                    <button type="button" class="login-type-btn" id="collegeLoginBtn" onclick="selectLoginType('college')">
+                        <span class="login-type-icon">🏫</span>
+                        <span class="login-type-text">College Login</span>
+                    </button>
+                </div>
+                
+                <!-- Login Form -->
+                <form id="loginForm" class="registration-form" style="display: none;">
+                    <input type="hidden" id="loginType" name="loginType" value="">
+                    
+                    <!-- College Name Field (for college login) -->
+                    <div class="form-group" id="collegeNameGroup" style="display: none;">
+                        <label for="collegeName" class="form-label">
+                            College Name <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="collegeName" 
+                            name="collegeName" 
+                            class="form-input" 
+                            placeholder="Enter your college name"
+                            minlength="2"
+                            maxlength="100"
+                            autocomplete="organization"
+                        >
+                        <span class="form-error" id="collegeNameError"></span>
+                    </div>
+                    
+                    <!-- Department Field (for college login) -->
+                    <div class="form-group" id="departmentGroup" style="display: none;">
+                        <label for="departmentName" class="form-label">
+                            Department Name <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="departmentName" 
+                            name="departmentName" 
+                            class="form-input" 
+                            placeholder="Enter your department name"
+                            minlength="2"
+                            maxlength="100"
+                            autocomplete="organization-title"
+                        >
+                        <span class="form-error" id="departmentNameError"></span>
+                    </div>
+                    
+                    <!-- Username -->
+                    <div class="form-group">
+                        <label for="username" class="form-label">
+                            Username <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            class="form-input" 
+                            placeholder="Enter your username"
+                            required
+                            autocomplete="username"
+                        >
+                        <span class="form-error" id="usernameError"></span>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="password" class="form-label">
+                            Password <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            class="form-input" 
+                            placeholder="Enter your password"
+                            required
+                            autocomplete="current-password"
+                        >
+                        <span class="form-error" id="passwordError"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-submit-group">
+                        <button type="button" class="back-btn" onclick="goBackToSelection()" style="margin-bottom: 1rem;">← Back</button>
+                        <button type="submit" class="register-submit-btn" id="loginBtn">
+                            <span class="btn-text">Login</span>
+                            <span class="btn-glow"></span>
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Register Link (only show for college login) -->
+                <div id="registerLink" style="text-align: center; margin-top: 1.5rem; display: none;">
+                    <p style="color: var(--text-gray); font-family: 'Rajdhani', sans-serif;">
+                        Don't have an account? 
+                        <a href="register-user.html" style="color: var(--primary-blue); text-decoration: none;">Register here</a>
+                    </p>
+                </div>
+
+                <!-- Error Message -->
+                <div class="form-error-message" id="formError" style="display: none;">
+                    <div class="error-icon">✗</div>
+                    <h3 class="error-title">Login Failed</h3>
+                    <p class="error-message" id="errorMessageText"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script src="login.js"></script>
+</body>
+</html>

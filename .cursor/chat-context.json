@@ -1,0 +1,41 @@
+{
+  "projectName": "Tech Rodeo Registration System",
+  "lastUpdated": "2025-11-15",
+  "keyConversations": [
+    {
+      "topic": "Initial Setup",
+      "summary": "Created registration form with Google Forms integration"
+    },
+    {
+      "topic": "Form Submission Issues",
+      "summary": "Fixed 404 error by correcting form ID from edit URL to submission URL"
+    },
+    {
+      "topic": "Authentication System",
+      "summary": "Implemented complete auth system with login, register, dashboard, and admin panel"
+    },
+    {
+      "topic": "Business Rules",
+      "summary": "Enforced one team per college per event, reusable form for all events"
+    }
+  ],
+  "importantDecisions": [
+    "Using localStorage for data persistence",
+    "One account per college enforced",
+    "One team per college per event enforced",
+    "Reusable registration form via URL parameters",
+    "Admin panel protected with authentication"
+  ],
+  "configuration": {
+    "googleFormId": "1FAIpQLSdZh26G3X0UBjm1UlmpUwpshVB1jcNMbxnVCZrJg0eB73kMmw",
+    "adminUsername": "admin",
+    "adminPassword": "admin123",
+    "storageKeys": {
+      "users": "tech_rodeo_users",
+      "currentUser": "tech_rodeo_current_user",
+      "registrations": "tech_rodeo_registrations",
+      "admin": "tech_rodeo_admin"
+    }
+  }
+}
+

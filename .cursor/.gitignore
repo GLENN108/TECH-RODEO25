@@ -1,0 +1,9 @@
+# Cursor local context files
+# These files contain project context and should be committed to version control
+# but may contain sensitive information - review before committing
+
+# Exclude any temporary or cache files
+*.tmp
+*.cache
+*.log
+

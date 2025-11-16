@@ -1,0 +1,8 @@
+{
+    "code-runner.executorMap": {
+        "html": "start $fileName"
+    },
+    "code-runner.runInTerminal": true,
+    "code-runner.clearPreviousOutput": true
+}
+

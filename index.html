@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Rodeo - Loyola College</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Floating Tech Elements -->
+    <div class="floating-elements">
+        <div class="tech-shape shape-1"></div>
+        <div class="tech-shape shape-2"></div>
+        <div class="tech-shape shape-3"></div>
+        <div class="tech-shape shape-4"></div>
+        <div class="tech-shape shape-5"></div>
+    </div>
+
+    <!-- Top Section -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Event Logo (Top Left) -->
+            <div class="logo-left">
+                <div class="logo-placeholder">
+                    <span class="logo-text">TR</span>
+                </div>
+            </div>
+
+            <!-- Center College Info -->
+            <div class="college-info">
+                <h1 class="college-name">Loyola College</h1>
+                <p class="department-name">Department of Data Science</p>
+            </div>
+
+            <!-- Loyola Logo (Top Right) -->
+            <div class="logo-right">
+                <div class="logo-placeholder">
+                    <span class="logo-text">LC</span>
+                </div>
+            </div>
+        </div>
+        <!-- Navigation Links -->
+        <div style="text-align: center; margin-top: 1rem; padding: 0 2rem;">
+            <div class="user-menu" style="display: none;">
+                <a href="dashboard.html" style="color: var(--primary-blue); text-decoration: none; margin: 0 1rem; font-family: 'Rajdhani', sans-serif; font-weight: 600;">Dashboard</a>
+                <a href="admin.html" style="color: var(--primary-blue); text-decoration: none; margin: 0 1rem; font-family: 'Rajdhani', sans-serif; font-weight: 600;">Admin</a>
+                <button onclick="logoutUser(); window.location.reload();" style="background: transparent; border: 2px solid var(--primary-blue); color: var(--primary-blue); padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; font-family: 'Rajdhani', sans-serif; font-weight: 600; margin-left: 1rem;">Logout</button>
+            </div>
+            <div class="login-links">
+                <a href="login.html" class="login-link" style="color: var(--primary-blue); text-decoration: none; margin: 0 1rem; font-family: 'Rajdhani', sans-serif; font-weight: 600;">Login</a>
+                <a href="register-user.html" class="register-link" style="color: var(--primary-blue); text-decoration: none; margin: 0 1rem; font-family: 'Rajdhani', sans-serif; font-weight: 600;">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Hero Section -->
+    <main class="hero-section">
+        <div class="hero-content">
+            <h2 class="main-title">
+                <span class="title-letter">T</span>
+                <span class="title-letter">E</span>
+                <span class="title-letter">C</span>
+                <span class="title-letter">H</span>
+                <span class="title-space"></span>
+                <span class="title-letter">R</span>
+                <span class="title-letter">O</span>
+                <span class="title-letter">D</span>
+                <span class="title-letter">E</span>
+                <span class="title-letter">O</span>
+            </h2>
+        </div>
+    </main>
+
+    <!-- Register Button Section -->
+    <section class="register-section">
+        <button class="register-btn" id="registerBtn" onclick="handleRegisterClick(); return false;">
+            <span class="btn-text">REGISTER</span>
+            <span class="btn-glow"></span>
+        </button>
+    </section>
+
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+

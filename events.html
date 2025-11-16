@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Rodeo Events - Loyola College</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Floating Tech Elements -->
+    <div class="floating-elements">
+        <div class="tech-shape shape-1"></div>
+        <div class="tech-shape shape-2"></div>
+        <div class="tech-shape shape-3"></div>
+        <div class="tech-shape shape-4"></div>
+        <div class="tech-shape shape-5"></div>
+    </div>
+
+    <!-- Events Page Header -->
+    <header class="events-header">
+        <div class="events-header-container">
+            <!-- TR Logo (Left) -->
+            <div class="events-logo-left">
+                <a href="index.html" class="logo-link">
+                    <div class="events-logo-text">HOME</div>
+                </a>
+            </div>
+
+            <!-- Center Title -->
+            <div class="events-title-center">
+                <h1 class="events-main-title">TECH RODEO EVENTS</h1>
+            </div>
+
+            <!-- Menu Icon (Right) -->
+            <div class="events-menu-right">
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <div class="user-menu" style="display: none;">
+                        <a href="dashboard.html" style="color: var(--primary-blue); text-decoration: none; font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.9rem;">Dashboard</a>
+                        <a href="admin.html" style="color: var(--primary-blue); text-decoration: none; font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.9rem; margin-left: 1rem;">Admin</a>
+                        <button onclick="logoutUser(); window.location.reload();" style="background: transparent; border: 2px solid var(--primary-blue); color: var(--primary-blue); padding: 0.4rem 0.8rem; border-radius: 20px; cursor: pointer; font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.9rem; margin-left: 1rem;">Logout</button>
+                    </div>
+                    <div class="login-links">
+                        <a href="login.html" class="login-link" style="color: var(--primary-blue); text-decoration: none; font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.9rem;">Login</a>
+                        <a href="register-user.html" class="register-link" style="color: var(--primary-blue); text-decoration: none; font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.9rem; margin-left: 1rem;">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Events Grid Section -->
+    <main class="events-main">
+        <div class="events-container">
+            <!-- Event Card 1: HackVerse -->
+            <div class="event-card" data-event="hackverse">
+                <div class="event-card-content">
+                    <h2 class="event-name">HackVerse</h2>
+                    <button class="event-details-btn" onclick="navigateToEvent('hackverse')">
+                        View Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Event Card 2: VisWiz -->
+            <div class="event-card" data-event="viswiz">
+                <div class="event-card-content">
+                    <h2 class="event-name">VisWiz</h2>
+                    <button class="event-details-btn" onclick="navigateToEvent('viswiz')">
+                        View Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Event Card 3: IQ Verse -->
+            <div class="event-card" data-event="iqverse">
+                <div class="event-card-content">
+                    <h2 class="event-name">IQ Verse</h2>
+                    <button class="event-details-btn" onclick="navigateToEvent('iqverse')">
+                        View Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Event Card 4: DataWear -->
+            <div class="event-card" data-event="datawear">
+                <div class="event-card-content">
+                    <h2 class="event-name">DataWear</h2>
+                    <button class="event-details-btn" onclick="navigateToEvent('datawear')">
+                        View Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Event Card 5: Rodei Hunt -->
+            <div class="event-card" data-event="rodeihunt">
+                <div class="event-card-content">
+                    <h2 class="event-name">Rodei Hunt</h2>
+                    <button class="event-details-btn" onclick="navigateToEvent('rodeihunt')">
+                        View Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Event Card 6: Data Fusion -->
+            <div class="event-card" data-event="datafusion">
+                <div class="event-card-content">
+                    <h2 class="event-name">Data Fusion</h2>
+                    <button class="event-details-btn" onclick="navigateToEvent('datafusion')">
+                        View Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Event Card 7: ProFusion -->
+            <div class="event-card" data-event="profusion">
+                <div class="event-card-content">
+                    <h2 class="event-name">ProFusion</h2>
+                    <button class="event-details-btn" onclick="navigateToEvent('profusion')">
+                        View Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Event Card 8: Pitch Storm -->
+            <div class="event-card" data-event="pitchstorm">
+                <div class="event-card-content">
+                    <h2 class="event-name">Pitch Storm</h2>
+                    <button class="event-details-btn" onclick="navigateToEvent('pitchstorm')">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script src="events.js"></script>
+</body>
+</html>
+

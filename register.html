@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Tech Rodeo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Floating Tech Elements -->
+    <div class="floating-elements">
+        <div class="tech-shape shape-1"></div>
+        <div class="tech-shape shape-2"></div>
+        <div class="tech-shape shape-3"></div>
+        <div class="tech-shape shape-4"></div>
+        <div class="tech-shape shape-5"></div>
+    </div>
+
+    <!-- Registration Header -->
+    <header class="register-header">
+        <div class="register-header-container">
+            <a href="events.html" class="back-btn">← Back to Events</a>
+            <h1 class="register-header-title">Event Registration</h1>
+            <div></div>
+        </div>
+    </header>
+
+    <!-- Registration Main -->
+    <main class="register-main">
+        <div class="register-container">
+            <div class="register-content">
+                <h2 class="register-title" id="eventTitle">Registration Form</h2>
+                <p class="register-subtitle">Please fill in all the required information to complete your registration.</p>
+                
+                <!-- Registration Form -->
+                <form id="registrationForm" class="registration-form">
+                    <!-- Event Name (Hidden, auto-filled from URL) -->
+                    <input type="hidden" id="eventName" name="eventName" value="">
+                    
+                    <!-- College Name (Hidden if logged in) -->
+                    <div class="form-group" id="collegeNameGroup" style="display: none;">
+                        <label for="collegeName" class="form-label">
+                            College Name <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="collegeName" 
+                            name="collegeName" 
+                            class="form-input" 
+                            placeholder="Enter your college name"
+                            required
+                            minlength="2"
+                            maxlength="100"
+                            autocomplete="organization"
+                        >
+                        <span class="form-error" id="collegeNameError"></span>
+                    </div>
+
+                    <!-- Department Name (Hidden if logged in) -->
+                    <div class="form-group" id="departmentNameGroup" style="display: none;">
+                        <label for="departmentName" class="form-label">
+                            Department Name <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="departmentName" 
+                            name="departmentName" 
+                            class="form-input" 
+                            placeholder="Enter your department name"
+                            required
+                            minlength="2"
+                            maxlength="100"
+                            autocomplete="organization-title"
+                        >
+                        <span class="form-error" id="departmentNameError"></span>
+                    </div>
+
+                    <!-- Member 1 Name -->
+                    <div class="form-group">
+                        <label for="member1Name" class="form-label">
+                            Member 1 - Name <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="member1Name" 
+                            name="member1Name" 
+                            class="form-input" 
+                            placeholder="Enter member 1 name"
+                            required
+                            minlength="2"
+                            maxlength="100"
+                            pattern="[a-zA-Z\s\.'\-]+"
+                            title="Name can only contain letters, spaces, and basic punctuation"
+                            autocomplete="name"
+                        >
+                        <span class="form-error" id="member1NameError"></span>
+                    </div>
+
+                    <!-- Member 2 Name -->
+                    <div class="form-group">
+                        <label for="member2Name" class="form-label">
+                            Member 2 - Name <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="member2Name" 
+                            name="member2Name" 
+                            class="form-input" 
+                            placeholder="Enter member 2 name"
+                            required
+                            minlength="2"
+                            maxlength="100"
+                            pattern="[a-zA-Z\s\.'\-]+"
+                            title="Name can only contain letters, spaces, and basic punctuation"
+                            autocomplete="name"
+                        >
+                        <span class="form-error" id="member2NameError"></span>
+                    </div>
+
+                    <!-- Contact Number -->
+                    <div class="form-group">
+                        <label for="contactNumber" class="form-label">
+                            Contact Number <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="tel" 
+                            id="contactNumber" 
+                            name="contactNumber" 
+                            class="form-input" 
+                            placeholder="Enter your contact number (10-15 digits)"
+                            required
+                            autocomplete="tel"
+                            pattern="[0-9]{10,15}"
+                            title="Please enter 10-15 digits only"
+                        >
+                        <span class="form-error" id="contactNumberError"></span>
+                    </div>
+
+                    <!-- Contact Email -->
+                    <div class="form-group">
+                        <label for="contactEmail" class="form-label">
+                            Contact Email <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="email" 
+                            id="contactEmail" 
+                            name="contactEmail" 
+                            class="form-input" 
+                            placeholder="Enter your email address"
+                            required
+                            maxlength="254"
+                            autocomplete="email"
+                        >
+                        <span class="form-error" id="contactEmailError"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-submit-group">
+                        <button type="submit" class="register-submit-btn" id="submitBtn">
+                            <span class="btn-text">Submit Registration</span>
+                            <span class="btn-glow"></span>
+                        </button>
+                        <div class="form-loading" id="formLoading" style="display: none;">
+                            <span class="loading-spinner"></span>
+                            <span class="loading-text">Submitting...</span>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Success Message -->
+                <div class="form-success" id="formSuccess" style="display: none;">
+                    <div class="success-icon">✓</div>
+                    <h3 class="success-title">Registration Successful!</h3>
+                    <p class="success-message">Your registration has been submitted successfully. You will receive a confirmation email shortly.</p>
+                </div>
+
+                <!-- Error Message -->
+                <div class="form-error-message" id="formError" style="display: none;">
+                    <div class="error-icon">✗</div>
+                    <h3 class="error-title">Registration Failed</h3>
+                    <p class="error-message" id="errorMessageText">Please try again or contact support if the problem persists.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script src="registration.js"></script>
+</body>
+</html>
+

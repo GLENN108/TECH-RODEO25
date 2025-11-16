@@ -1,0 +1,83 @@
+{
+  "projectName": "Tech Rodeo - Event Registration System",
+  "description": "A complete event registration system with authentication, Google Forms integration, and admin panel",
+  "version": "1.0.0",
+  "structure": {
+    "authentication": {
+      "files": [
+        "auth.js",
+        "login.html",
+        "login.js",
+        "register-user.html",
+        "register-user.js"
+      ],
+      "purpose": "User authentication system with localStorage-based session management"
+    },
+    "registration": {
+      "files": [
+        "register.html",
+        "registration.js"
+      ],
+      "purpose": "Reusable event registration form with Google Forms integration"
+    },
+    "dashboard": {
+      "files": [
+        "dashboard.html",
+        "dashboard.js"
+      ],
+      "purpose": "Student dashboard to view their registrations"
+    },
+    "admin": {
+      "files": [
+        "admin.html",
+        "admin.js"
+      ],
+      "purpose": "Admin panel to view all registrations and export data"
+    },
+    "events": {
+      "files": [
+        "events.html",
+        "events.js",
+        "events/hackverse.html",
+        "events/viswiz.html",
+        "events/iqverse.html",
+        "events/datawear.html",
+        "events/rodeihunt.html",
+        "events/datafusion.html",
+        "events/profusion.html",
+        "events/pitchstorm.html"
+      ],
+      "purpose": "Event listing and detail pages"
+    },
+    "styling": {
+      "files": [
+        "style.css"
+      ],
+      "purpose": "Global styles for the entire application"
+    },
+    "main": {
+      "files": [
+        "index.html",
+        "script.js"
+      ],
+      "purpose": "Landing page and main navigation"
+    }
+  },
+  "keyFeatures": [
+    "User authentication (login/register)",
+    "One team per college per event enforcement",
+    "Reusable registration form for all events",
+    "Google Forms API integration",
+    "Student dashboard",
+    "Admin panel with CSV export",
+    "localStorage-based data storage"
+  ],
+  "technologies": [
+    "HTML5",
+    "CSS3",
+    "JavaScript (Vanilla)",
+    "Google Forms API",
+    "localStorage"
+  ]
+}
+

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HackVerse - Tech Rodeo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 1rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            font-family: 'Arial Black', Arial, sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: #00eaff;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(0, 234, 255, 0.6);
+            margin-right: 2rem;
+        }
+
+        .title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: #00eaff;
+            text-align: center;
+            margin-bottom: 3rem;
+            letter-spacing: 2px;
+            text-shadow: 0 0 30px rgba(0, 234, 255, 0.5);
+        }
+
+        .section {
+            background: rgba(10, 10, 10, 0.8);
+            border: 2px solid rgba(0, 234, 255, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #00eaff;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .section-content {
+            color: #b0b0b0;
+            line-height: 1.8;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            font-size: 1rem;
+            color: #ffffff;
+            background: rgba(10, 10, 10, 0.6);
+            border: 2px solid rgba(0, 234, 255, 0.3);
+            border-radius: 12px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            border-color: #00eaff;
+            box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
+            background: rgba(10, 10, 10, 0.8);
+        }
+
+        .form-input::placeholder {
+            color: #666;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #ffffff;
+            background: transparent;
+            border: 3px solid #00eaff;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: #00eaff;
+            color: #0a0a0a;
+            box-shadow: 0 0 30px rgba(0, 234, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .success-message {
+            display: none;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(0, 234, 255, 0.1);
+            border: 2px solid #00eaff;
+            border-radius: 12px;
+            color: #00eaff;
+            font-weight: 600;
+            text-align: center;
+            font-size: 1.1rem;
+            box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hidden-iframe {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem 0.5rem;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: 1.5rem;
+            }
+
+            .logo {
+                margin-bottom: 1rem;
+                font-size: 1.5rem;
+            }
+
+            .title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .form-input {
+                padding: 0.9rem 1rem;
+                font-size: 0.95rem;
+            }
+
+            .submit-btn {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with TR Logo -->
+        <div class="header">
+            <div class="logo">TR</div>
+        </div>
+
+        <!-- Title -->
+        <h1 class="title">HackVerse</h1>
+
+        <!-- Event Rules Section -->
+        <div class="section">
+            <h2 class="section-title">Event Rules</h2>
+            <div class="section-content">
+                <p>Event rules and guidelines will be available here soon. Please check back for updates.</p>
+            </div>
+        </div>
+
+        <!-- Registration Form Section -->
+        <div class="section">
+            <h2 class="section-title">Register for HackVerse</h2>
+            
+            <form 
+                id="hackverseForm"
+                action="https://docs.google.com/forms/d/e/1FAIpQLSe4W57-DJeIoY9l0Avzk2_RWz-HnLsLWg3G3dHZW1GeSZFpSw/formResponse"
+                method="POST"
+                target="hidden_iframe"
+            >
+                <!-- Field 1: Name of the College -->
+                <div class="form-group">
+                    <label for="college" class="form-label">Name of the College *</label>
+                    <input 
+                        type="text" 
+                        id="college" 
+                        name="entry.2005620554" 
+                        class="form-input" 
+                        placeholder="Enter college name" 
+                        required
+                    >
+                </div>
+
+                <!-- Field 2: Department -->
+                <div class="form-group">
+                    <label for="department" class="form-label">Department *</label>
+                    <input 
+                        type="text" 
+                        id="department" 
+                        name="entry.1045781291" 
+                        class="form-input" 
+                        placeholder="Enter department" 
+                        required
+                    >
+                </div>
+
+                <!-- Field 3: Member 1 -->
+                <div class="form-group">
+                    <label for="member1" class="form-label">Member 1 *</label>
+                    <input 
+                        type="text" 
+                        id="member1" 
+                        name="entry.1065046570" 
+                        class="form-input" 
+                        placeholder="Enter member 1 name" 
+                        required
+                    >
+                </div>
+
+                <!-- Field 4: Member 2 -->
+                <div class="form-group">
+                    <label for="member2" class="form-label">Member 2 *</label>
+                    <input 
+                        type="text" 
+                        id="member2" 
+                        name="entry.1166974658" 
+                        class="form-input" 
+                        placeholder="Enter member 2 name" 
+                        required
+                    >
+                </div>
+
+                <!-- Field 5: Member 3 -->
+                <div class="form-group">
+                    <label for="member3" class="form-label">Member 3</label>
+                    <input 
+                        type="text" 
+                        id="member3" 
+                        name="entry.835141160" 
+                        class="form-input" 
+                        placeholder="Enter member 3 name"
+                    >
+                </div>
+
+                <!-- Field 6: Contact Number -->
+                <div class="form-group">
+                    <label for="contact" class="form-label">Contact Number *</label>
+                    <input 
+                        type="tel" 
+                        id="contact" 
+                        name="entry.1941381977" 
+                        class="form-input" 
+                        placeholder="Enter contact number" 
+                        required
+                    >
+                </div>
+
+                <!-- Field 7: Contact Email Id -->
+                <div class="form-group">
+                    <label for="email" class="form-label">Contact Email Id *</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="entry.2117083597" 
+                        class="form-input" 
+                        placeholder="Enter email address" 
+                        required
+                    >
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">Register Now</button>
+            </form>
+
+            <!-- Success Message -->
+            <div id="successMessage" class="success-message">
+                Registration successful! Your response has been recorded.
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden iframe for form submission -->
+    <iframe name="hidden_iframe" id="hidden_iframe" class="hidden-iframe"></iframe>
+
+    <script>
+        // Show success message when form is submitted
+        document.getElementById('hackverseForm').addEventListener('submit', function() {
+            // Reset form after a short delay
+            setTimeout(function() {
+                document.getElementById('hackverseForm').reset();
+                document.getElementById('successMessage').classList.add('show');
+                
+                // Scroll to success message
+                document.getElementById('successMessage').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+            }, 500);
+        });
+
+        // Handle iframe load (when form submission completes)
+        document.getElementById('hidden_iframe').addEventListener('load', function() {
+            // Form has been submitted
+            console.log('Form submitted successfully');
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Tech Rodeo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Floating Tech Elements -->
+    <div class="floating-elements">
+        <div class="tech-shape shape-1"></div>
+        <div class="tech-shape shape-2"></div>
+        <div class="tech-shape shape-3"></div>
+        <div class="tech-shape shape-4"></div>
+        <div class="tech-shape shape-5"></div>
+    </div>
+
+    <!-- Register Header -->
+    <header class="register-header">
+        <div class="register-header-container">
+            <a href="index.html" class="back-btn">← Home</a>
+            <h1 class="register-header-title">Create Account</h1>
+            <div></div>
+        </div>
+    </header>
+
+    <!-- Register Main -->
+    <main class="register-main">
+        <div class="register-container">
+            <div class="register-content">
+                <h2 class="register-title">Create Your Account</h2>
+                <p class="register-subtitle">Register your college to participate in Tech Rodeo events.</p>
+                
+                <!-- Register Form -->
+                <form id="registerForm" class="registration-form">
+                    <!-- College Name -->
+                    <div class="form-group">
+                        <label for="collegeName" class="form-label">
+                            College Name <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="collegeName" 
+                            name="collegeName" 
+                            class="form-input" 
+                            placeholder="Enter your college name"
+                            required
+                            minlength="2"
+                            maxlength="100"
+                            autocomplete="organization"
+                        >
+                        <span class="form-error" id="collegeNameError"></span>
+                    </div>
+
+                    <!-- Department Name -->
+                    <div class="form-group">
+                        <label for="departmentName" class="form-label">
+                            Department Name <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="departmentName" 
+                            name="departmentName" 
+                            class="form-input" 
+                            placeholder="Enter your department name"
+                            required
+                            minlength="2"
+                            maxlength="100"
+                            autocomplete="organization-title"
+                        >
+                        <span class="form-error" id="departmentNameError"></span>
+                    </div>
+
+                    <!-- Username -->
+                    <div class="form-group">
+                        <label for="username" class="form-label">
+                            Username <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            class="form-input" 
+                            placeholder="Choose a username"
+                            required
+                            minlength="3"
+                            maxlength="50"
+                            autocomplete="username"
+                            pattern="[a-zA-Z0-9_]+"
+                            title="Username can only contain letters, numbers, and underscores"
+                        >
+                        <span class="form-error" id="usernameError"></span>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="password" class="form-label">
+                            Password <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            class="form-input" 
+                            placeholder="Choose a password (min 6 characters)"
+                            required
+                            minlength="6"
+                            autocomplete="new-password"
+                        >
+                        <span class="form-error" id="passwordError"></span>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="form-group">
+                        <label for="confirmPassword" class="form-label">
+                            Confirm Password <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="password" 
+                            id="confirmPassword" 
+                            name="confirmPassword" 
+                            class="form-input" 
+                            placeholder="Confirm your password"
+                            required
+                            autocomplete="new-password"
+                        >
+                        <span class="form-error" id="confirmPasswordError"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-submit-group">
+                        <button type="submit" class="register-submit-btn" id="registerBtn">
+                            <span class="btn-text">Create Account</span>
+                            <span class="btn-glow"></span>
+                        </button>
+                    </div>
+
+                    <!-- Login Link -->
+                    <div style="text-align: center; margin-top: 1.5rem;">
+                        <p style="color: var(--text-gray); font-family: 'Rajdhani', sans-serif;">
+                            Already have an account? 
+                            <a href="login.html" style="color: var(--primary-blue); text-decoration: none;">Login here</a>
+                        </p>
+                    </div>
+                </form>
+
+                <!-- Success Message -->
+                <div class="form-success" id="formSuccess" style="display: none;">
+                    <div class="success-icon">✓</div>
+                    <h3 class="success-title">Account Created!</h3>
+                    <p class="success-message">Your account has been created successfully. Redirecting to login...</p>
+                </div>
+
+                <!-- Error Message -->
+                <div class="form-error-message" id="formError" style="display: none;">
+                    <div class="error-icon">✗</div>
+                    <h3 class="error-title">Registration Failed</h3>
+                    <p class="error-message" id="errorMessageText"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script src="register-user.js"></script>
+</body>
+</html>
