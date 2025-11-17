@@ -60,6 +60,21 @@
             font-weight: 600;
         }
 
+        .round-heading {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            color: var(--primary-blue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+
+        ul.rules-list {
+            list-style-type: disc;
+        }
+
         .contact-info {
             margin-top: 2rem;
             padding: 1.5rem;
@@ -134,26 +149,34 @@
             <div class="event-detail-content">
                 <h2 class="event-detail-name">Rodeo Hunt</h2>
                 <p class="event-detail-description">
-                    Rodei Hunt is an exciting treasure hunt competition with a tech twist. Navigate through 
-                    clues, solve puzzles, and use your technical skills to find hidden treasures. Team up 
-                    and race against time to be the first to complete the hunt!
+                    Rodeo Hunt - Treasure Hunt is a fast-paced chase for clues where logic, speed, and teamwork decide your path to victory. 
+                    Teams crack puzzles, crosswords, and tricky aptitude questions before diving into a high-stakes final round of math, stats, and CS challenges. 
+                    With every clue solved, you move closer to the hidden finish—but one wrong step can cost precious time. 
+                    No gadgets, no shortcuts—only pure brainpower and collaboration. 
+                    Saddle up, solve smart, and hunt your way to the treasure!
                 </p>
                 
                 <div class="event-rules-section">
-                    <h2 class="rules-title">Rodeo Hunt – Treasure Hunt Rules</h2>
+                    <h2 class="rules-title">Rodeo Hunt Rules</h2>
                     <p class="event-timing"><strong>Timing:</strong> 01:30 P.M - 02:30 P.M</p>
                     
                     <ol class="rules-list">
                         <li>Two participants per team.</li>
-                        <li>The event comprises three rounds: Preliminary, Buzzer round and Final.</li>
-                        <li><strong>Preliminary Round:</strong><br>
-                            Questions will be based on general aptitude, including puzzles, crosswords, and similar challenges. The selected teams will be leading to the buzzer round.</li>
-                        <li><strong>Buzzer round:</strong><br>
-                            Questions will be based on the treasure. Successful completion of this round will lead teams to Final.</li>
-                        <li><strong>Final:</strong><br>
-                            The selected team will be leading to treasure with clues then they have to buzzer, once they find the treasure.</li>
-                        <li>Preliminary and Final round will be non buzzer round.</li>
-                        <li>Usage of mobile phones, smartwatches, bluetooth devices and internet access is strictly prohibited during the competition which leads to immediate disqualification.</li>
+                        <li>The event comprises three rounds: Preliminary and Final.</li>
+                    </ol>
+                    
+                    <h3 class="round-heading">Preliminary Round (25 min):</h3>
+                    <ul class="rules-list">
+                        <li>Questions will be based on general aptitude, including puzzles, crosswords, and similar challenges.</li>
+                    </ul>
+                    
+                    <h3 class="round-heading">Final Round (25 min):</h3>
+                    <ul class="rules-list">
+                        <li>Questions will cover basic Mathematics, Statistics, and Computer Science (Python, Java), with an emphasis on problem-solving.</li>
+                    </ul>
+                    
+                    <ol class="rules-list" style="margin-top: 2rem;">
+                        <li>Usage of mobile phones, smartwatches, Bluetooth devices, and internet access is strictly prohibited during the competition and will lead to immediate disqualification.</li>
                     </ol>
                     
                     <div class="contact-info">

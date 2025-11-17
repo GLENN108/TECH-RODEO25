@@ -3,11 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HackVerse - Tech Rodeo</title>
+    <title>BugWarz - Tech Rodeo</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .event-rules-section {
+            text-align: left;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+        }
+
+        .rules-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            text-align: left;
+        }
+
+        .event-timing {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .event-timing strong {
+            color: var(--primary-blue);
+        }
+
+        .rules-list {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            color: var(--text-light);
+            line-height: 1.8;
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+            text-align: left;
+        }
+
+        .rules-list li {
+            margin-bottom: 1.2rem;
+            text-align: left;
+        }
+
+        .rules-list li strong {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .round-heading {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            color: var(--primary-blue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+
+        ul.rules-list {
+            list-style-type: disc;
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .contact-info p {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            color: var(--text-light);
+            margin: 0.5rem 0;
+            text-align: left;
+        }
+
+        .contact-info strong {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .event-rules-section {
+                padding: 1.5rem;
+                margin: 1.5rem 0;
+            }
+
+            .rules-list {
+                padding-left: 1.2rem;
+            }
+
+            .rules-list li {
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .event-rules-section {
+                padding: 1rem;
+            }
+
+            .rules-list {
+                padding-left: 1rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Floating Tech Elements -->
@@ -34,12 +149,35 @@
             <div class="event-detail-content">
                 <h2 class="event-detail-name">BugWarz</h2>
                 <p class="event-detail-description">
-                    HackVerse is an innovative hackathon event that brings together creative minds to build 
-                    cutting-edge solutions. Participants will work in teams to develop projects that address 
-                    real-world challenges using the latest technologies.
+                    BugWarz is a high-intensity coding face-off where logic, speed, and precision decide your fate. 
+                    Teams battle through a sharp MCQ round before the top contenders enter the ultimate debugging arena.
+                    With Python as their weapon, participants race against time to outsmart tricky code traps. 
+                    Only the sharpest minds who can spot, fix, and optimize under pressure will claim victory. 
+                    Step in, decode the chaos, and conquer the bugs!
                 </p>
-                <div class="event-detail-placeholder">
-                    <p>Event details, rules, schedule, and registration information will be available here soon.</p>
+                
+                <div class="event-rules-section">
+                    <h2 class="rules-title">BugWarz - Rules</h2>
+                    
+                    <h3 class="round-heading">Preliminary Round (MCQ Assessment)</h3>
+                    <ul class="rules-list">
+                        <li>All registered teams shall participate in an objective-type preliminary examination consisting of multiple-choice questions.</li>
+                        <li>Based on the performance in this assessment, the top ten (10) teams will be selected to advance to the final round.</li>
+                    </ul>
+                    
+                    <h3 class="round-heading">Final Round (Debugging Challenge)</h3>
+                    <ul class="rules-list">
+                        <li>The qualified teams will compete in a structured debugging round.</li>
+                        <li>Each participating team must be represented by two members from the same department of their respective institution.</li>
+                        <li>Debugging problems will be provided at the commencement of the round, and teams must complete all assigned tasks within the stipulated time frame.</li>
+                        <li>The competition will be hosted using the Python programming language.</li>
+                    </ul>
+                    
+                    <div class="contact-info">
+                        <p><strong>For further queries, contact:</strong></p>
+                        <p>Glenn Joel – 8940380053</p>
+                        <p>Kevin Jesu – 6381501885</p>
+                    </div>
                 </div>
                 <button class="register-event-btn" onclick="window.location.href='../register.html?event=hackverse'">
                     Register for HackVerse

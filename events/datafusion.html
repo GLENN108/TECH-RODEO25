@@ -50,6 +50,10 @@
             text-align: left;
         }
 
+        ul.rules-list {
+            list-style-type: disc;
+        }
+
         .rules-list li {
             margin-bottom: 1.2rem;
             text-align: left;
@@ -58,6 +62,17 @@
         .rules-list li strong {
             color: var(--primary-blue);
             font-weight: 600;
+        }
+
+        .round-heading {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            color: var(--primary-blue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+            text-align: left;
         }
 
         .contact-info {
@@ -134,28 +149,39 @@
             <div class="event-detail-content">
                 <h2 class="event-detail-name">Data Fusion</h2>
                 <p class="event-detail-description">
-                    Data Fusion is a competition that challenges participants to merge and analyze data 
-                    from multiple sources. Demonstrate your expertise in data integration, cleaning, and 
-                    transformation to create meaningful insights from complex datasets.
+                    Data Fusion – Connections is a fast-paced puzzle showdown where tech knowledge meets sharp intuition. Teams decode images, fragments, and clues to uncover hidden tech terms across escalating rounds. 
+                    From simple matches to intense multi-layered connections, every second tests your clarity and teamwork. Only those who can think visually, link concepts instantly, and crack complex chains will rise to the top. 
+                    Connect the clues, unlock the logic, and dominate the data maze!
                 </p>
                 
                 <div class="event-rules-section">
-                    <h2 class="rules-title">DataFusion – Connections Rules</h2>
+                    <h2 class="rules-title">DataFusion - Connections Rules</h2>
                     <p class="event-timing"><strong>Timing:</strong> 10:00 A.M - 12:00 P.M</p>
                     
                     <ol class="rules-list">
-                        <li>Two participants per team.</li>
-                        <li>The event comprises three rounds: Data Recall, Tech Connections, and Concept Express.</li>
-                        <li><strong>Data Recall (Preliminary Round):</strong><br>
-                            20 tech and data science images will be displayed for 1 minute. Participants must recall and write them within 1-2 minutes.</li>
-                        <li><strong>Tech Connections (Intermediate Round):</strong><br>
-                            Identify the common link between images or clues related to data science concepts.</li>
-                        <li><strong>Concept Express (Final Round):</strong><br>
-                            One participant acts out a data science or tech concept while the other guesses it.</li>
-                        <li>Each correct answer earns 1 point; no negative points for wrong answers.</li>
-                        <li>Usage of smartphones, smartwatches, and Bluetooth devices is strictly prohibited.</li>
-                        <li>In case of a tie, a tie-breaker question will decide the winner.</li>
+                        <li>Each team must consist of two participants.</li>
                     </ol>
+                    
+                    <h3 class="round-heading">Round 1: Simple Tech Connections</h3>
+                    <ul class="rules-list">
+                        <li>This is an elimination round.</li>
+                        <li><strong>Objective:</strong> Identify a tech term by connecting 2–3 images or words.</li>
+                        <li>Teams must combine the clues to form a meaningful tech concept.</li>
+                    </ul>
+                    
+                    <h3 class="round-heading">Round 2: Immediate Connections</h3>
+                    <ul class="rules-list">
+                        <li><strong>Objective:</strong> Identify a tech word split into 2–4 fragments (images, letters, syllables).</li>
+                        <li>Combine all fragments to form the full word.</li>
+                        <li>Points will be added to the team's score.</li>
+                    </ul>
+                    
+                    <h3 class="round-heading">Round 3: Complex Connections</h3>
+                    <ul class="rules-list">
+                        <li><strong>Objective:</strong> Identify all 4 related tech/data terms from clues (images, words, diagrams).</li>
+                        <li>Teams must write all 4 terms correctly within the time limit.</li>
+                        <li>Points will be added to the team's score.</li>
+                    </ul>
                     
                     <div class="contact-info">
                         <p><strong>For further queries, contact:</strong></p>

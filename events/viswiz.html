@@ -60,6 +60,21 @@
             font-weight: 600;
         }
 
+        .round-heading {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            color: var(--primary-blue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+
+        ul.rules-list {
+            list-style-type: disc;
+        }
+
         .contact-info {
             margin-top: 2rem;
             padding: 1.5rem;
@@ -134,9 +149,11 @@
             <div class="event-detail-content">
                 <h2 class="event-detail-name">VisWiz</h2>
                 <p class="event-detail-description">
-                    VisWiz is a data visualization competition where participants showcase their skills in 
-                    transforming complex data into compelling visual stories. Create stunning visualizations 
-                    that make data accessible and meaningful.
+                    VisWiz is a three-round data visualization competition for teams of two, with all communication strictly in English. 
+                    The event begins with a 10-minute elimination MCQ round testing analytical and visual skills. 
+                    Qualified teams enter a fast-paced clue-and-guess round, where technical communication is key. 
+                    Finalists then work with a dataset to build a clear narrative from the insights. 
+                    VisWiz highlights teamwork, clarity, and the art of telling stories through data.
                 </p>
                 
                 <div class="event-rules-section">
@@ -146,15 +163,27 @@
                     <ol class="rules-list">
                         <li>Two participants per team.</li>
                         <li>The event comprises three rounds: Preliminary, Intermediate and Final.</li>
-                        <li><strong>Preliminary Round (Elimination):</strong><br>
-                            10 minutes objective-type round, visualization-based questions to test analytical and conceptual skills.</li>
-                        <li><strong>Intermediate Round:</strong><br>
-                            1 minute technical Dumb Charades per team. This round is not eliminative but carries marks to the final.</li>
-                        <li><strong>Final Round:</strong><br>
-                            In the Final Round, participants will be provided with a dataset and required to construct a single narrative from the facts, drawing their own conclusions. Teams must complete the task within 40 minutes.</li>
-                        <li>The goal is to produce the most imaginative visualization and detailed narrative description of the data.</li>
-                        <li>Participants should work on tools such as Power BI, Tableau, Python, R, or SPSS.</li>
+                        <li>The communication must take place only in English.</li>
                     </ol>
+                    
+                    <h3 class="round-heading">Round 1: Preliminary (10 minutes)</h3>
+                    <ul class="rules-list">
+                        <li>This is an ELIMINATION round.</li>
+                        <li>Objective-type round with visualization-based questions to test analytical and conceptual skills.</li>
+                    </ul>
+                    
+                    <h3 class="round-heading">Round 2: Intermediate (1 minute per team)</h3>
+                    <ul class="rules-list">
+                        <li>POINTS from this round will be added to the team's score.</li>
+                        <li>One player (Clue-Giver) faces the screen and gives only technical clues for the chart/design principle shown.</li>
+                        <li>The other player (Guesser) faces away and must identify the concept within the time limit.</li>
+                    </ul>
+                    
+                    <h3 class="round-heading">Round 3: Data Visualization (Final Round)</h3>
+                    <ul class="rules-list">
+                        <li>POINTS from this round will be added to the team's score.</li>
+                        <li>Participants will be provided with a dataset and must construct a single narrative from the facts, drawing their own conclusions.</li>
+                    </ul>
                     
                     <div class="contact-info">
                         <p><strong>For further queries, contact:</strong></p>
