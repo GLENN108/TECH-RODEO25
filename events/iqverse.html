@@ -8,6 +8,106 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .event-rules-section {
+            text-align: left;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+        }
+
+        .rules-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            text-align: left;
+        }
+
+        .event-timing {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .event-timing strong {
+            color: var(--primary-blue);
+        }
+
+        .rules-list {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            color: var(--text-light);
+            line-height: 1.8;
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+            text-align: left;
+        }
+
+        .rules-list li {
+            margin-bottom: 1.2rem;
+            text-align: left;
+        }
+
+        .rules-list li strong {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .contact-info p {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            color: var(--text-light);
+            margin: 0.5rem 0;
+            text-align: left;
+        }
+
+        .contact-info strong {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .event-rules-section {
+                padding: 1.5rem;
+                margin: 1.5rem 0;
+            }
+
+            .rules-list {
+                padding-left: 1.2rem;
+            }
+
+            .rules-list li {
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .event-rules-section {
+                padding: 1rem;
+            }
+
+            .rules-list {
+                padding-left: 1rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Floating Tech Elements -->
@@ -38,9 +138,29 @@
                     logical reasoning, and quick thinking. Compete in various rounds of mind-bending puzzles 
                     and technical challenges.
                 </p>
-                <div class="event-detail-placeholder">
-                    <p>Event details, rules, schedule, and registration information will be available here soon.</p>
+                
+                <div class="event-rules-section">
+                    <h2 class="rules-title">IQ Verse - Quiz Rules</h2>
+                    <p class="event-timing"><strong>Timing:</strong> 10:45 A.M - 12:30 P.M</p>
+                    
+                    <ol class="rules-list">
+                        <li>Maximum 3 participants per team.</li>
+                        <li>The event will consist of 3 rounds: Preliminary, Technical, and Rapid Fire/Final.</li>
+                        <li>Questions will cover Data Science, Computer Science, and Statistics.</li>
+                        <li>Top-performing teams from each round will advance to the next stage.</li>
+                        <li>No negative marking for incorrect or unanswered questions.</li>
+                        <li>Use of mobile phones or smart devices is strictly prohibited.</li>
+                        <li>Time limits will be strictly enforced for each round.</li>
+                        <li>In case of a tie, tie-breaker questions will decide the winner.</li>
+                    </ol>
+                    
+                    <div class="contact-info">
+                        <p><strong>For further queries, contact:</strong></p>
+                        <p>Keerthana - 9884181358</p>
+                        <p>HemaSri - 6369912254</p>
+                    </div>
                 </div>
+                
                 <button class="register-event-btn" onclick="window.location.href='../register.html?event=iqverse'">
                     Register for IQ Verse
                 </button>

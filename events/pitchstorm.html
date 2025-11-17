@@ -8,6 +8,116 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .event-rules-section {
+            text-align: left;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+        }
+
+        .rules-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            text-align: left;
+        }
+
+        .event-timing {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .event-timing strong {
+            color: var(--primary-blue);
+        }
+
+        .rules-list {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            color: var(--text-light);
+            line-height: 1.8;
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+            text-align: left;
+        }
+
+        .rules-list li {
+            margin-bottom: 1.2rem;
+            text-align: left;
+        }
+
+        .rules-list li strong {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .rules-list ul {
+            margin-top: 0.5rem;
+            margin-left: 1.5rem;
+            list-style-type: disc;
+        }
+
+        .rules-list ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .contact-info p {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            color: var(--text-light);
+            margin: 0.5rem 0;
+            text-align: left;
+        }
+
+        .contact-info strong {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .event-rules-section {
+                padding: 1.5rem;
+                margin: 1.5rem 0;
+            }
+
+            .rules-list {
+                padding-left: 1.2rem;
+            }
+
+            .rules-list li {
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .event-rules-section {
+                padding: 1rem;
+            }
+
+            .rules-list {
+                padding-left: 1rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Floating Tech Elements -->
@@ -38,9 +148,41 @@
                     innovative ideas to a panel of judges. Showcase your communication skills, creativity, 
                     and ability to sell your concept in a limited time frame. Perfect for aspiring entrepreneurs!
                 </p>
-                <div class="event-detail-placeholder">
-                    <p>Event details, rules, schedule, and registration information will be available here soon.</p>
+                
+                <div class="event-rules-section">
+                    <h2 class="rules-title">PitchStorm - Shark Tank Rules</h2>
+                    <p class="event-timing"><strong>Timing:</strong> 10:45 A.M - 12:30 P.M</p>
+                    
+                    <ol class="rules-list">
+                        <li>Two participants per team.</li>
+                        <li>Teams must present an original business idea (product-based or service-based) strictly related to the tech field.</li>
+                        <li>Each team will get a 6-minute presentation followed by a 2-minute Q&A session. Presentation time limits will be strictly followed.</li>
+                        <li>Teams must prepare a PPT for showcasing their business idea and bring their own laptops for the presentation.</li>
+                        <li><strong>Evaluation Criteria:</strong>
+                            <ul>
+                                <li>Innovative Idea</li>
+                                <li>Feasibility & Market Potential</li>
+                                <li>Presentation Quality</li>
+                                <li>Clarity in Explanation</li>
+                            </ul>
+                        </li>
+                        <li><strong>General Rules:</strong>
+                            <ul>
+                                <li>No illegal or unethical concepts allowed.</li>
+                                <li>Professional conduct is mandatory.</li>
+                                <li>Judges' decisions are final.</li>
+                                <li>Participants must register before the deadline.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <div class="contact-info">
+                        <p><strong>For further queries, contact:</strong></p>
+                        <p>Anand - 8012484177</p>
+                        <p>Ashwin - 7010580526</p>
+                    </div>
                 </div>
+                
                 <button class="register-event-btn" onclick="window.location.href='../register.html?event=pitchstorm'">
                     Register for Pitch Storm
                 </button>

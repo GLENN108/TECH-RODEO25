@@ -76,11 +76,392 @@
 
     <!-- Register Button Section -->
     <section class="register-section">
-        <button class="register-btn" id="registerBtn" onclick="handleRegisterClick(); return false;">
-            <span class="btn-text">REGISTER</span>
-            <span class="btn-glow"></span>
-        </button>
+        <div class="buttons-container">
+            <button class="register-btn" id="registerBtn" onclick="handleRegisterClick(); return false;">
+                <span class="btn-text">REGISTER</span>
+                <span class="btn-glow"></span>
+            </button>
+            <button class="rule-book-btn" id="ruleBookBtn" onclick="openRuleBookModal(); return false;">
+                <span class="btn-text">RULE BOOK</span>
+                <span class="btn-glow"></span>
+            </button>
+        </div>
     </section>
+
+    <!-- Rule Book Modal -->
+    <div id="ruleBookModal" class="modal-overlay">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeRuleBookModal();">&times;</button>
+            <div class="modal-content">
+                <h2 class="modal-title">TECH RODEO 25 - GENERAL RULES</h2>
+                <div class="modal-body">
+                    <ol class="rules-list">
+                        <li>Registration is free and open only to students from Computer Science, Computer Applications, Data Science, IT, Mathematics, Statistics and departments related to the aforementioned.</li>
+                        <li>Only one team from a department can participate in each event. Participants may take part in up to two events, provided there are no timing conflicts.</li>
+                        <li>It is mandatory that all participants bring their College ID and Bonafide Certificate from their HoD/Principal.</li>
+                        <li>Online Registration closes on 04-12-2025 at 04:00 P.M. ON-SPOT Registration starts from 07:00 A.M to 08:30 A.M, Venue: MCA BLOCK Ground Floor.</li>
+                        <li>All participants, even those registered online, must report to the On-Spot Registration Desk to collect their participation card. Failure to do so will result in cancellation of registration.</li>
+                        <li>No participants will be allowed inside the college after 08:15 A.M as the college gates will be closed.</li>
+                        <li>Participants if once went outside the college premises will not be allowed inside again.</li>
+                        <li>Participants have to make their own arrangements for Lunch and Refreshments. The College Canteen will be open on the day.</li>
+                        <li>Dress Code:
+                            <ul>
+                                <li><strong>Boys</strong> - Formal Shirts/Collared T-Shirts, Full Pant (Round Neck T-Shirts, Torn Jeans, Hoodie are not allowed).</li>
+                                <li><strong>Girls</strong> - Formal Dress (Short Tops, Torn Jeans, Round Neck T-Shirts are not allowed).</li>
+                            </ul>
+                        </li>
+                        <li>Non-compliance with the time limit, rules, and code of conduct will result in immediate disqualification.</li>
+                        <li>Decisions of the Judges are final and binding.</li>
+                        <li>The announcement of Results and Prize Distribution will be held only during the Valedictory Function (03:00 P.M).</li>
+                    </ol>
+                    <div class="contact-info">
+                        <p><strong>For further queries, contact:</strong></p>
+                        <p>Florina A - 9043183343</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Rule Book Button Styles */
+        .buttons-container {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .rule-book-btn {
+            position: relative;
+            padding: 1.2rem 4rem;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            letter-spacing: 0.2em;
+            color: var(--text-light);
+            background: transparent;
+            border: 3px solid var(--primary-purple);
+            border-radius: 50px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 
+                0 0 20px rgba(139, 92, 246, 0.3),
+                inset 0 0 20px rgba(139, 92, 246, 0.1);
+            text-transform: uppercase;
+        }
+
+        .rule-book-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #8b5cf6 0%, #764ba2 100%);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+
+        .rule-book-btn:hover::before {
+            left: 0;
+        }
+
+        .rule-book-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 
+                0 0 40px rgba(139, 92, 246, 0.6),
+                0 0 80px rgba(139, 92, 246, 0.4),
+                inset 0 0 30px rgba(139, 92, 246, 0.2);
+            border-color: var(--primary-purple);
+        }
+
+        .rule-book-btn:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .rule-book-btn .btn-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .rule-book-btn:hover .btn-glow {
+            opacity: 1;
+            animation: pulseGlow 1.5s ease-in-out infinite;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-container {
+            position: relative;
+            width: 70%;
+            height: 80%;
+            background: rgba(10, 14, 39, 0.95);
+            border: 2px solid var(--primary-blue);
+            border-radius: 20px;
+            box-shadow: 
+                0 0 40px rgba(0, 212, 255, 0.4),
+                0 0 80px rgba(139, 92, 246, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            animation: slideIn 0.3s ease;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            font-size: 2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            transition: all 0.3s ease;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            background: var(--primary-blue);
+            color: var(--text-light);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .modal-content {
+            padding: 3rem;
+            overflow-y: auto;
+            flex: 1;
+            height: 100%;
+        }
+
+        .modal-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            letter-spacing: 3px;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            background: var(--gradient-neon);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modal-body {
+            font-family: 'Rajdhani', sans-serif;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .rules-list {
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+        }
+
+        .rules-list li {
+            margin-bottom: 1.5rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+        }
+
+        .rules-list ul {
+            margin-top: 0.5rem;
+            margin-left: 1.5rem;
+            list-style-type: disc;
+        }
+
+        .rules-list ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .contact-info p {
+            margin: 0.5rem 0;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+        }
+
+        .contact-info strong {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: scale(0.9) translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .buttons-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .modal-container {
+                width: 90%;
+                height: 85%;
+            }
+
+            .modal-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .modal-title {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .rules-list li {
+                font-size: 1rem;
+                margin-bottom: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .buttons-container {
+                gap: 1rem;
+            }
+
+            .register-btn,
+            .rule-book-btn {
+                padding: 1rem 3rem;
+                font-size: 1.1rem;
+            }
+
+            .modal-container {
+                width: 95%;
+                height: 90%;
+                border-radius: 15px;
+            }
+
+            .modal-content {
+                padding: 1.5rem 1rem;
+            }
+
+            .modal-close {
+                top: 0.5rem;
+                right: 0.5rem;
+                width: 35px;
+                height: 35px;
+                font-size: 1.5rem;
+            }
+
+            .modal-title {
+                font-size: 1.3rem;
+                margin-bottom: 1rem;
+            }
+
+            .rules-list {
+                padding-left: 1rem;
+            }
+
+            .rules-list li {
+                font-size: 0.95rem;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+
+    <script>
+        // Rule Book Modal Functions
+        function openRuleBookModal() {
+            const modal = document.getElementById('ruleBookModal');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeRuleBookModal() {
+            const modal = document.getElementById('ruleBookModal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('ruleBookModal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeRuleBookModal();
+                    }
+                });
+
+                // Close modal on Escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && modal.classList.contains('active')) {
+                        closeRuleBookModal();
+                    }
+                });
+            }
+        });
+    </script>
 
     <script src="auth.js"></script>
     <script src="script.js"></script>
