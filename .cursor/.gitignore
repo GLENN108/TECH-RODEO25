@@ -1,9 +1,16 @@
 # Cursor local context files
-# These files contain project context and should be committed to version control
-# but may contain sensitive information - review before committing
+# Keep directory structure but ignore generated content
+context/*
+!context/.gitkeep
+embeddings/*
+!embeddings/.gitkeep
+memory/*
+!memory/.gitkeep
+chat/*
+!chat/.gitkeep
+index/*
+!index/.gitkeep
 
-# Exclude any temporary or cache files
-*.tmp
-*.cache
-*.log
-
+# Keep config and rules
+!.gitignore
+!config.json

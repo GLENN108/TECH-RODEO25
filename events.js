@@ -6,7 +6,35 @@
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializeEventsPage();
+    updateNavigationVisibility();
 });
+
+/**
+ * Update navigation visibility based on login status
+ */
+function updateNavigationVisibility() {
+    const currentUser = getCurrentUser();
+    const userMenu = document.querySelector('.user-menu');
+    const loginLinks = document.querySelector('.login-links');
+    
+    if (currentUser) {
+        // User is logged in - show user menu, hide login links
+        if (userMenu) {
+            userMenu.style.display = 'flex';
+        }
+        if (loginLinks) {
+            loginLinks.style.display = 'none';
+        }
+    } else {
+        // User is not logged in - show login links, hide user menu
+        if (userMenu) {
+            userMenu.style.display = 'none';
+        }
+        if (loginLinks) {
+            loginLinks.style.display = 'flex';
+        }
+    }
+}
 
 /**
  * Initialize events page interactions
