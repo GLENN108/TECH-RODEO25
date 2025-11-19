@@ -66,17 +66,29 @@
                         <label for="departmentName" class="form-label">
                             Department Name <span class="required">*</span>
                         </label>
-                        <input 
-                            type="text" 
+                        <select 
                             id="departmentName" 
                             name="departmentName" 
                             class="form-input" 
-                            placeholder="Enter your department name"
                             required
-                            minlength="2"
-                            maxlength="100"
                             autocomplete="organization-title"
                         >
+                            <option value="">Select Department</option>
+                            <option value="BCA">BCA</option>
+                            <option value="BSC MATHEMATICS">BSC MATHEMATICS</option>
+                            <option value="BSC STATISTICS">BSC STATISTICS</option>
+                            <option value="BSC COMPUTER SCIENCE">BSC COMPUTER SCIENCE</option>
+                            <option value="BSC DATA SCIENCE">BSC DATA SCIENCE</option>
+                            <option value="BSC INFORMATION TECHNOLOGY">BSC INFORMATION TECHNOLOGY</option>
+                            <option value="MCA">MCA</option>
+                            <option value="MSC MATHEMATICS">MSC MATHEMATICS</option>
+                            <option value="MSC STATISTICS">MSC STATISTICS</option>
+                            <option value="MSC COMPUTER SCIENCE">MSC COMPUTER SCIENCE</option>
+                            <option value="MSC DATA SCIENCE">MSC DATA SCIENCE</option>
+                            <option value="MSC INFORMATION TECHNOLOGY">MSC INFORMATION TECHNOLOGY</option>
+                            <option value="MSC APPLIED DATA SCIENCE">MSC APPLIED DATA SCIENCE</option>
+                            <option value="OTHER">OTHER</option>
+                        </select>
                         <span class="form-error" id="departmentNameError"></span>
                     </div>
 

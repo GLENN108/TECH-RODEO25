@@ -204,11 +204,11 @@ function setupForm() {
         return;
     }
     
-    // Check if already registered for this event
+    // Check if already registered for this event (username-based check)
     const urlParams = new URLSearchParams(window.location.search);
     const eventName = urlParams.get('event') || 'general';
     
-    if (isCollegeRegisteredForEvent(currentUser.collegeName, eventName)) {
+    if (isCollegeRegisteredForEvent(currentUser.username, eventName)) {
         // Already registered - show message
         const formContainer = document.querySelector('.register-content');
         formContainer.innerHTML = `
@@ -547,6 +547,7 @@ async function submitRegistration(formData) {
             if (currentUser) {
                 const registration = {
                     id: generateId(),
+                    username: currentUser.username, // Store username for data isolation
                     collegeName: formData.collegeName,
                     departmentName: formData.departmentName,
                     member1Name: formData.member1Name,

@@ -79,16 +79,14 @@ function registerUser(collegeName, departmentName, username, password) {
         throw new Error('Password must be at least 6 characters');
     }
     
-    // Check if username already exists
+    // Check if username already exists (username-based login system)
     const users = getUsers();
     if (users.find(u => u.username === username)) {
         throw new Error('Username already exists');
     }
     
-    // Check if college already has an account
-    if (users.find(u => u.collegeName.toLowerCase() === collegeName.toLowerCase())) {
-        throw new Error('An account already exists for this college');
-    }
+    // Multiple users from same college are allowed
+    // Username is unique identifier, not college name
     
     // Create new user
     const newUser = {
@@ -266,22 +264,22 @@ function saveRegistration(registration) {
 }
 
 /**
- * Get registrations for a specific user/college
+ * Get registrations for a specific user (username-based)
  */
-function getUserRegistrations(collegeName) {
+function getUserRegistrations(username) {
     const registrations = getRegistrations();
     return registrations.filter(r => 
-        r.collegeName.toLowerCase() === collegeName.toLowerCase()
+        r.username && r.username.toLowerCase() === username.toLowerCase()
     );
 }
 
 /**
- * Check if college is already registered for an event
+ * Check if user (username-based) is already registered for an event
  */
-function isCollegeRegisteredForEvent(collegeName, eventName) {
+function isCollegeRegisteredForEvent(username, eventName) {
     const registrations = getRegistrations();
     return registrations.some(r => 
-        r.collegeName.toLowerCase() === collegeName.toLowerCase() &&
+        r.username && r.username.toLowerCase() === username.toLowerCase() &&
         r.eventName.toLowerCase() === eventName.toLowerCase()
     );
 }

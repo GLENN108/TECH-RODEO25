@@ -24,7 +24,7 @@ function displayUserInfo(user) {
 }
 
 function loadRegistrations(user) {
-    const registrations = getUserRegistrations(user.collegeName);
+    const registrations = getUserRegistrations(user.username);
     const registrationsList = document.getElementById('registrationsList');
     
     if (registrations.length === 0) {
