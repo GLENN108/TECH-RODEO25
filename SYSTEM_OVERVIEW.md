@@ -34,7 +34,7 @@
   
 - **Reusable Form** (`register.html`)
   - Works for ALL events automatically
-  - Takes event name from URL parameter: `?event=hackverse`
+  - Takes event name from URL parameter: `?event=bugwarz`
   - Pre-fills college/department from logged-in user
   - Only asks for team member details
   

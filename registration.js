@@ -7,14 +7,15 @@
 const GOOGLE_FORM_ID = '1FAIpQLSdZh26G3X0UBjm1UlmpUwpshVB1jcNMbxnVCZrJg0eB73kMmw'; // From https://docs.google.com/forms/d/e/1FAIpQLSdZh26G3X0UBjm1UlmpUwpshVB1jcNMbxnVCZrJg0eB73kMmw/viewform
 const GOOGLE_FORM_URL = `https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`;
 
-// Entry IDs for each field (in order: College Name, Department Name, Member 1, Member 2, Contact Number, Contact Email)
+// Entry IDs for each field (in order: College Name, Department Name, Member 1, Member 2, Contact Number, Contact Email, Event)
 const ENTRY_IDS = {
     collegeName: 'entry.1722691925',
     departmentName: 'entry.1244501594',
     member1Name: 'entry.1619849414',
     member2Name: 'entry.1020210834',
     contactNumber: 'entry.306300074',
-    contactEmail: 'entry.308774662'
+    contactEmail: 'entry.308774662',
+    event: 'entry.553851024'
 };
 
 // Google Apps Script Web App URL (if using Apps Script method)
@@ -86,16 +87,42 @@ function initializeRegistrationPage() {
 }
 
 /**
- * Extract event name from URL parameter
+ * Extract event name from URL parameter or referrer page
  */
 function extractEventFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
-    const eventName = urlParams.get('event');
+    let eventName = urlParams.get('event');
     const currentUser = getCurrentUser();
     
+    // If not in URL parameter, try to extract from referrer page name
+    if (!eventName && document.referrer) {
+        try {
+            const referrerUrl = new URL(document.referrer);
+            const referrerPath = referrerUrl.pathname;
+            // Extract page name from referrer (e.g., "bugwarz.html" -> "bugwarz")
+            const match = referrerPath.match(/\/([^\/]+)\.html$/);
+            if (match) {
+                eventName = match[1];
+                // Remove "events/" prefix if present
+                eventName = eventName.replace(/^events\//, '');
+            }
+        } catch (e) {
+            // If URL parsing fails, try simple extraction from referrer string
+            const match = document.referrer.match(/([^\/]+)\.html/);
+            if (match) {
+                eventName = match[1];
+            }
+        }
+    }
+    
     if (eventName) {
-        // Set hidden input
+        // Set hidden inputs
         document.getElementById('eventName').value = eventName;
+        // Set Google Forms event field
+        const eventFieldGF = document.getElementById('eventFieldGoogleForms');
+        if (eventFieldGF) {
+            eventFieldGF.value = eventName;
+        }
         
         // Format event name for display
         const formattedEventName = formatEventName(eventName);
@@ -157,7 +184,7 @@ function extractEventFromURL() {
 }
 
 /**
- * Format event name for display (e.g., "hackverse" -> "HackVerse")
+ * Format event name for display (e.g., "bugwarz" -> "BugWarz")
  */
 function formatEventName(eventName) {
     return eventName
@@ -217,6 +244,12 @@ function setupForm() {
             formData.departmentName = currentUser.departmentName || formData.departmentName;
         }
         
+        // CRITICAL: Always ensure event name is set from the hidden field
+        const eventNameInput = document.getElementById('eventName');
+        if (eventNameInput && eventNameInput.value) {
+            formData.eventName = eventNameInput.value;
+        }
+        
         // Validate that we have college and department
         if (!formData.collegeName || !formData.departmentName) {
             alert('College name and department are required. Please ensure you are logged in correctly.');
@@ -240,6 +273,20 @@ function collectFormData() {
     const collegeName = currentUser ? currentUser.collegeName : (document.getElementById('collegeName') ? document.getElementById('collegeName').value.trim() : '');
     const departmentName = currentUser ? currentUser.departmentName : (document.getElementById('departmentName') ? document.getElementById('departmentName').value.trim() : '');
     
+    // Get event name from hidden field (auto-filled from URL or referrer)
+    const eventNameInput = document.getElementById('eventName');
+    const eventFieldGF = document.getElementById('eventFieldGoogleForms');
+    let eventName = '';
+    if (eventNameInput && eventNameInput.value) {
+        eventName = eventNameInput.value;
+    } else if (eventFieldGF && eventFieldGF.value) {
+        eventName = eventFieldGF.value;
+    } else {
+        // Fallback: try to get from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        eventName = urlParams.get('event') || 'General';
+    }
+    
     return {
         timestamp: timestamp,
         collegeName: collegeName,
@@ -248,7 +295,7 @@ function collectFormData() {
         member2Name: document.getElementById('member2Name').value.trim(),
         contactNumber: document.getElementById('contactNumber').value.trim(),
         contactEmail: document.getElementById('contactEmail').value.trim(),
-        eventName: document.getElementById('eventName').value || 'General'
+        eventName: eventName
     };
 }
 
@@ -603,13 +650,14 @@ function createPrefilledFormURL(formData) {
     const params = new URLSearchParams();
     
     // Pre-fill form fields with entry IDs
-    // Always include college name and department name
+    // Always include college name, department name, and event name
     params.append(ENTRY_IDS.collegeName, formData.collegeName || '');
     params.append(ENTRY_IDS.departmentName, formData.departmentName || '');
     params.append(ENTRY_IDS.member1Name, formData.member1Name || '');
     params.append(ENTRY_IDS.member2Name, formData.member2Name || '');
     params.append(ENTRY_IDS.contactNumber, formData.contactNumber || '');
     params.append(ENTRY_IDS.contactEmail, formData.contactEmail || '');
+    params.append(ENTRY_IDS.event, formData.eventName || '');
     
     return `${baseUrl}?${params.toString()}`;
 }
@@ -657,14 +705,15 @@ async function submitDirectlyToGoogleForms(formData) {
         
         // Add form data with correct entry IDs
         // Note: Timestamp is auto-generated by Google Forms, so we don't need to send it
-        // IMPORTANT: Always include college name and department name with each registration
+        // IMPORTANT: Always include college name, department name, and event name with each registration
         const fields = [
             { name: ENTRY_IDS.collegeName, value: formData.collegeName || '' },
             { name: ENTRY_IDS.departmentName, value: formData.departmentName || '' },
             { name: ENTRY_IDS.member1Name, value: formData.member1Name || '' },
             { name: ENTRY_IDS.member2Name, value: formData.member2Name || '' },
             { name: ENTRY_IDS.contactNumber, value: formData.contactNumber || '' },
-            { name: ENTRY_IDS.contactEmail, value: formData.contactEmail || '' }
+            { name: ENTRY_IDS.contactEmail, value: formData.contactEmail || '' },
+            { name: ENTRY_IDS.event, value: formData.eventName || '' }
         ];
         
         // Validate all required fields are present

@@ -35,7 +35,7 @@ The registration form collects the following information (all required):
 
 ### For Users
 
-1. Navigate to any event detail page (e.g., `events/hackverse.html`)
+1. Navigate to any event detail page (e.g., `events/bugwarz.html`)
 2. Click the "Register for [Event Name]" button
 3. Fill in all required fields
 4. Click "Submit Registration"
@@ -64,7 +64,7 @@ The registration form collects the following information (all required):
 The registration page accepts an `event` parameter in the URL:
 
 ```
-register.html?event=hackverse
+register.html?event=bugwarz
 register.html?event=viswiz
 register.html?event=iqverse
 ```
@@ -79,7 +79,7 @@ This automatically:
 
 All event detail pages have been updated to link to the registration page:
 
-- `events/hackverse.html` → `register.html?event=hackverse`
+- `events/bugwarz.html` → `register.html?event=bugwarz`
 - `events/viswiz.html` → `register.html?event=viswiz`
 - `events/iqverse.html` → `register.html?event=iqverse`
 - `events/datawear.html` → `register.html?event=datawear`
@@ -103,7 +103,7 @@ Your Google Form URL: https://forms.gle/VAuBwCRavZUriFjD7
 
 ## Testing
 
-1. Open `register.html?event=hackverse` in your browser
+1. Open `register.html?event=bugwarz` in your browser
 2. Fill in the form with test data
 3. Submit the form
 4. Check your Google Form responses or Google Sheet to verify the data was saved

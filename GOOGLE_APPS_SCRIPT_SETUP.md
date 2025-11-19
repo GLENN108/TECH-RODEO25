@@ -200,7 +200,7 @@ If you prefer not to use Apps Script, you can extract entry IDs and submit direc
 
 ## Testing
 
-1. Open your registration page: `register.html?event=hackverse`
+1. Open your registration page: `register.html?event=bugwarz`
 2. Fill in the form
 3. Submit
 4. Check your Google Form responses or Google Sheet to verify the data was saved
