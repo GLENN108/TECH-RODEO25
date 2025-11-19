@@ -12,7 +12,31 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     setupRegisterForm();
+    setupDepartmentDropdown();
 });
+
+function setupDepartmentDropdown() {
+    const departmentSelect = document.getElementById('departmentName');
+    const otherDepartmentGroup = document.getElementById('otherDepartmentGroup');
+    const otherDepartmentInput = document.getElementById('otherDepartmentName');
+    
+    if (departmentSelect && otherDepartmentGroup) {
+        departmentSelect.addEventListener('change', function() {
+            if (this.value === 'OTHER') {
+                otherDepartmentGroup.style.display = 'block';
+                if (otherDepartmentInput) {
+                    otherDepartmentInput.setAttribute('required', 'required');
+                }
+            } else {
+                otherDepartmentGroup.style.display = 'none';
+                if (otherDepartmentInput) {
+                    otherDepartmentInput.removeAttribute('required');
+                    otherDepartmentInput.value = '';
+                }
+            }
+        });
+    }
+}
 
 function setupRegisterForm() {
     const form = document.getElementById('registerForm');
@@ -30,10 +54,26 @@ function setupRegisterForm() {
         
         // Get form data
         const collegeName = document.getElementById('collegeName').value.trim();
-        const departmentName = document.getElementById('departmentName').value.trim();
+        const departmentSelect = document.getElementById('departmentName').value.trim();
+        const otherDepartmentInput = document.getElementById('otherDepartmentName');
         const username = document.getElementById('username').value.trim();
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
+        
+        // Get department name - use custom input if OTHER is selected
+        let departmentName = departmentSelect;
+        if (departmentSelect === 'OTHER') {
+            const otherDept = otherDepartmentInput ? otherDepartmentInput.value.trim() : '';
+            if (!otherDept) {
+                showError('Please specify your department name');
+                if (otherDepartmentInput) {
+                    document.getElementById('otherDepartmentNameError').textContent = 'Department name is required';
+                    document.getElementById('otherDepartmentNameError').style.display = 'block';
+                }
+                return;
+            }
+            departmentName = otherDept;
+        }
         
         // Validate
         if (!collegeName || !departmentName || !username || !password || !confirmPassword) {
@@ -58,6 +98,15 @@ function setupRegisterForm() {
         registerBtn.style.opacity = '0.6';
         
         try {
+            // CRITICAL: Ensure we never save "OTHER" as department name
+            // Always save the actual department name (custom input value if OTHER was selected)
+            if (departmentName === 'OTHER' || departmentName.trim() === '') {
+                showError('Invalid department. Please select a valid department or enter a custom department name.');
+                registerBtn.disabled = false;
+                registerBtn.style.opacity = '1';
+                return;
+            }
+            
             // Attempt registration
             const user = registerUser(collegeName, departmentName, username, password);
             

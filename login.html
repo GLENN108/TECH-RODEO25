@@ -98,6 +98,24 @@
                         </select>
                         <span class="form-error" id="departmentNameError"></span>
                     </div>
+
+                    <!-- Other Department Input (shown when OTHER is selected) -->
+                    <div class="form-group" id="otherDepartmentGroup" style="display: none;">
+                        <label for="otherDepartmentName" class="form-label">
+                            Specify Department Name <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="otherDepartmentName" 
+                            name="otherDepartmentName" 
+                            class="form-input" 
+                            placeholder="Enter your department name"
+                            minlength="2"
+                            maxlength="100"
+                            autocomplete="organization-title"
+                        >
+                        <span class="form-error" id="otherDepartmentNameError"></span>
+                    </div>
                     
                     <!-- Username -->
                     <div class="form-group">

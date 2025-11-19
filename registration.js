@@ -84,6 +84,33 @@ function initializeRegistrationPage() {
     setupForm();
     extractEventFromURL();
     setupFormValidation();
+    setupDepartmentDropdown();
+}
+
+/**
+ * Setup department dropdown to show/hide OTHER input field
+ */
+function setupDepartmentDropdown() {
+    const departmentSelect = document.getElementById('departmentName');
+    const otherDepartmentGroup = document.getElementById('otherDepartmentGroup');
+    const otherDepartmentInput = document.getElementById('otherDepartmentName');
+    
+    if (departmentSelect && otherDepartmentGroup) {
+        departmentSelect.addEventListener('change', function() {
+            if (this.value === 'OTHER') {
+                otherDepartmentGroup.style.display = 'block';
+                if (otherDepartmentInput) {
+                    otherDepartmentInput.setAttribute('required', 'required');
+                }
+            } else {
+                otherDepartmentGroup.style.display = 'none';
+                if (otherDepartmentInput) {
+                    otherDepartmentInput.removeAttribute('required');
+                    otherDepartmentInput.value = '';
+                }
+            }
+        });
+    }
 }
 
 /**
@@ -241,8 +268,12 @@ function setupForm() {
         // This ensures every registration includes these fields
         if (currentUser) {
             formData.collegeName = currentUser.collegeName || formData.collegeName;
+            // Use stored department from user account (which includes custom "OTHER" values)
             formData.departmentName = currentUser.departmentName || formData.departmentName;
         }
+        
+        // Debug: Log form data before submission
+        console.log('Form Data before submission:', formData);
         
         // CRITICAL: Always ensure event name is set from the hidden field
         const eventNameInput = document.getElementById('eventName');
@@ -252,7 +283,18 @@ function setupForm() {
         
         // Validate that we have college and department
         if (!formData.collegeName || !formData.departmentName) {
-            alert('College name and department are required. Please ensure you are logged in correctly.');
+            console.error('Validation failed - Missing data:');
+            console.error('College Name:', formData.collegeName);
+            console.error('Department Name:', formData.departmentName);
+            console.error('Current User:', currentUser);
+            alert('College name and department are required. Please ensure you are logged in correctly and have a department set in your account.');
+            return;
+        }
+        
+        // Additional validation - ensure department is not empty string
+        if (formData.departmentName.trim() === '') {
+            console.error('Department name is empty string!');
+            alert('Department name cannot be empty. Please ensure your account has a valid department.');
             return;
         }
         
@@ -271,7 +313,52 @@ function collectFormData() {
     // Always get college name and department from logged-in user
     // This ensures they are always included in the submission
     const collegeName = currentUser ? currentUser.collegeName : (document.getElementById('collegeName') ? document.getElementById('collegeName').value.trim() : '');
-    const departmentName = currentUser ? currentUser.departmentName : (document.getElementById('departmentName') ? document.getElementById('departmentName').value.trim() : '');
+    
+    // Get department - use logged-in user's department, or from form (handle OTHER option)
+    // IMPORTANT: Never send "OTHER" to Google Forms - always send the actual department name
+    let departmentName = '';
+    if (currentUser) {
+        // Use stored department from user account
+        // If stored value is "OTHER", it means the user account has an issue - should never happen
+        departmentName = currentUser.departmentName || '';
+        
+        // Safety check: if somehow "OTHER" is stored, log warning
+        if (departmentName === 'OTHER') {
+            console.error('⚠️ WARNING: User account has "OTHER" as department! This should not happen.');
+            console.error('User account:', currentUser);
+            // Try to get from form as fallback
+            const departmentSelect = document.getElementById('departmentName');
+            if (departmentSelect && departmentSelect.value.trim() === 'OTHER') {
+                const otherDeptInput = document.getElementById('otherDepartmentName');
+                departmentName = otherDeptInput ? otherDeptInput.value.trim() : '';
+            }
+        }
+        console.log('Using stored department from user account:', departmentName);
+    } else {
+        // User not logged in - get from form
+        const departmentSelect = document.getElementById('departmentName');
+        if (departmentSelect) {
+            const selectedDept = departmentSelect.value.trim();
+            if (selectedDept === 'OTHER') {
+                // Get custom department from input field
+                const otherDeptInput = document.getElementById('otherDepartmentName');
+                departmentName = otherDeptInput ? otherDeptInput.value.trim() : '';
+                console.log('Using OTHER department from form (custom input):', departmentName);
+            } else {
+                departmentName = selectedDept;
+                console.log('Using selected department from form:', departmentName);
+            }
+        }
+    }
+    
+    // CRITICAL: Ensure we never send "OTHER" to Google Forms
+    if (departmentName === 'OTHER' || departmentName.trim() === '') {
+        console.error('❌ CRITICAL ERROR: Department name is "OTHER" or empty!');
+        console.error('Department Name:', departmentName);
+        console.error('Current User:', currentUser);
+        // This should not happen, but if it does, we need to handle it
+        throw new Error('Invalid department name. Please ensure you have selected a valid department.');
+    }
     
     // Get event name from hidden field (auto-filled from URL or referrer)
     const eventNameInput = document.getElementById('eventName');
@@ -583,6 +670,11 @@ async function submitRegistration(formData) {
         }
     } catch (error) {
         console.error('Registration error:', error);
+        console.error('Error details:', {
+            message: error.message,
+            stack: error.stack,
+            formData: formData
+        });
         
         // Show error message
         formError.style.display = 'block';
@@ -707,30 +799,63 @@ async function submitDirectlyToGoogleForms(formData) {
         // Add form data with correct entry IDs
         // Note: Timestamp is auto-generated by Google Forms, so we don't need to send it
         // IMPORTANT: Always include college name, department name, and event name with each registration
+        // Ensure all values are strings and properly trimmed
         const fields = [
-            { name: ENTRY_IDS.collegeName, value: formData.collegeName || '' },
-            { name: ENTRY_IDS.departmentName, value: formData.departmentName || '' },
-            { name: ENTRY_IDS.member1Name, value: formData.member1Name || '' },
-            { name: ENTRY_IDS.member2Name, value: formData.member2Name || '' },
-            { name: ENTRY_IDS.contactNumber, value: formData.contactNumber || '' },
-            { name: ENTRY_IDS.contactEmail, value: formData.contactEmail || '' },
-            { name: ENTRY_IDS.event, value: formData.eventName || '' }
+            { name: ENTRY_IDS.collegeName, value: (formData.collegeName || '').toString().trim() },
+            { name: ENTRY_IDS.departmentName, value: (formData.departmentName || '').toString().trim() },
+            { name: ENTRY_IDS.member1Name, value: (formData.member1Name || '').toString().trim() },
+            { name: ENTRY_IDS.member2Name, value: (formData.member2Name || '').toString().trim() },
+            { name: ENTRY_IDS.contactNumber, value: (formData.contactNumber || '').toString().trim() },
+            { name: ENTRY_IDS.contactEmail, value: (formData.contactEmail || '').toString().trim() },
+            { name: ENTRY_IDS.event, value: (formData.eventName || '').toString().trim() }
         ];
+        
+        // Critical validation - ensure department is not empty and not "OTHER"
+        const departmentField = fields.find(f => f.name === ENTRY_IDS.departmentName);
+        if (!departmentField || !departmentField.value || departmentField.value.trim() === '' || departmentField.value === 'OTHER') {
+            console.error('❌ CRITICAL ERROR: Department field is invalid!');
+            console.error('Department Value:', departmentField ? departmentField.value : 'FIELD NOT FOUND');
+            console.error('Form Data:', formData);
+            console.error('Current User:', getCurrentUser());
+            reject(new Error('Department name is required and must be a valid department (not "OTHER"). Please ensure your account has a valid department.'));
+            return;
+        }
+        
+        console.log('✅ Department validation passed:', departmentField.value);
         
         // Validate all required fields are present
         if (!formData.collegeName || !formData.departmentName) {
             console.error('❌ Missing college name or department name!');
+            console.error('College Name:', formData.collegeName);
+            console.error('Department Name:', formData.departmentName);
             throw new Error('College name and department are required');
         }
+        
+        // Debug: Log all fields being submitted
+        console.log('Submitting to Google Forms with:');
+        console.log('College:', formData.collegeName);
+        console.log('Department:', formData.departmentName);
+        console.log('Event:', formData.eventName);
         
         console.log('Fields being submitted:');
         fields.forEach(field => {
             const input = document.createElement('input');
             input.type = 'hidden';
             input.name = field.name;
-            input.value = field.value;
+            // Ensure value is properly encoded and not null/undefined
+            input.value = (field.value || '').toString().trim();
             form.appendChild(input);
-            console.log(`  ${field.name} = "${field.value}"`);
+            console.log(`  ${field.name} = "${input.value}"`);
+            
+            // Special check for department field
+            if (field.name === ENTRY_IDS.departmentName) {
+                if (!input.value || input.value === '') {
+                    console.error('⚠️ WARNING: Department field is empty!');
+                    console.error('Form Data Department:', formData.departmentName);
+                } else {
+                    console.log('✅ Department value is present:', input.value);
+                }
+            }
         });
         
         document.body.appendChild(form);
