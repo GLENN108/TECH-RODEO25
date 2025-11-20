@@ -83,7 +83,7 @@ All event detail pages have been updated to link to the registration page:
 - `events/viswiz.html` → `register.html?event=viswiz`
 - `events/iqverse.html` → `register.html?event=iqverse`
 - `events/datawear.html` → `register.html?event=datawear`
-- `events/rodeihunt.html` → `register.html?event=rodeihunt`
+- `events/rodeohunt.html` → `register.html?event=rodeohunt`
 - `events/datafusion.html` → `register.html?event=datafusion`
 - `events/profusion.html` → `register.html?event=profusion`
 - `events/pitchstorm.html` → `register.html?event=pitchstorm`
