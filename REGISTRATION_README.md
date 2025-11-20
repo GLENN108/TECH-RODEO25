@@ -26,7 +26,7 @@ The registration form collects the following information (all required):
 - **Department Name** - Text input  
 - **Member 1 - Name** - Text input
 - **Member 2 - Name** - Text input
-- **Contact Number** - Phone number (10-15 digits)
+- **Contact Number** - Phone number (10 digits)
 - **Contact Email** - Email address
 
 **Note:** Timestamp is automatically generated when the form is submitted.
@@ -83,7 +83,7 @@ All event detail pages have been updated to link to the registration page:
 - `events/viswiz.html` → `register.html?event=viswiz`
 - `events/iqverse.html` → `register.html?event=iqverse`
 - `events/datawear.html` → `register.html?event=datawear`
-- `events/rodeohunt.html` → `register.html?event=rodeohunt`
+- `events/rodeihunt.html` → `register.html?event=rodeihunt`
 - `events/datafusion.html` → `register.html?event=datafusion`
 - `events/profusion.html` → `register.html?event=profusion`
 - `events/pitchstorm.html` → `register.html?event=pitchstorm`

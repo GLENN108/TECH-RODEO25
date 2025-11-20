@@ -82,7 +82,7 @@ The form currently uses:
 - Minimum/maximum length checks
 - Name format validation (letters, spaces, punctuation only)
 - Email format validation
-- Phone number format validation (10-15 digits)
+- Phone number format validation (10 digits)
 - HTML5 validation attributes
 
 ### Next Steps

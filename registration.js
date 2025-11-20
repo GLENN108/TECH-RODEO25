@@ -461,8 +461,8 @@ function validateForm() {
     if (!contactNumber) {
         showError('contactNumber', 'Contact number is required');
         isValid = false;
-    } else if (!/^[0-9]{10,15}$/.test(contactNumber)) {
-        showError('contactNumber', 'Please enter a valid contact number (10-15 digits only)');
+    } else if (!/^[0-9]{10}$/.test(contactNumber)) {
+        showError('contactNumber', 'Please enter a valid contact number (10 digits only)');
         isValid = false;
     }
     
@@ -580,8 +580,8 @@ function validateField(fieldId) {
             if (!value) {
                 showError(fieldId, 'Contact number is required');
                 return false;
-            } else if (!/^[0-9]{10,15}$/.test(value)) {
-                showError(fieldId, 'Please enter a valid contact number (10-15 digits)');
+            } else if (!/^[0-9]{10}$/.test(value)) {
+                showError(fieldId, 'Please enter a valid contact number (10 digits)');
                 return false;
             }
             break;
